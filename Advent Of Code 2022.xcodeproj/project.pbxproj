@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50A215A1293BBB9600ED244A /* Day3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A215A0293BBB9600ED244A /* Day3.swift */; };
 		50B0E46329382EC2003AF512 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B0E46229382EC2003AF512 /* main.swift */; };
+		50B0E46A29382ED2003AF512 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B0E46929382ED2003AF512 /* Day.swift */; };
+		50B0E46D2938306F003AF512 /* Parsing in Frameworks */ = {isa = PBXBuildFile; productRef = 50B0E46C2938306F003AF512 /* Parsing */; };
+		50B0E46F29383327003AF512 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B0E46E29383327003AF512 /* Utils.swift */; };
+		50B0E4712938F836003AF512 /* Day1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B0E4702938F836003AF512 /* Day1.swift */; };
+		50B0E474293A5046003AF512 /* Day2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B0E473293A5046003AF512 /* Day2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +29,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		50A215A0293BBB9600ED244A /* Day3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day3.swift; sourceTree = "<group>"; };
 		50B0E45F29382EC2003AF512 /* Advent Of Code 2022 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Advent Of Code 2022"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B0E46229382EC2003AF512 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		50B0E46929382ED2003AF512 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		50B0E46E29383327003AF512 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		50B0E4702938F836003AF512 /* Day1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day1.swift; sourceTree = "<group>"; };
+		50B0E473293A5046003AF512 /* Day2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50B0E46D2938306F003AF512 /* Parsing in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,8 +70,21 @@
 			isa = PBXGroup;
 			children = (
 				50B0E46229382EC2003AF512 /* main.swift */,
+				50B0E46929382ED2003AF512 /* Day.swift */,
+				50B0E46E29383327003AF512 /* Utils.swift */,
+				50B0E4722938F83B003AF512 /* Days */,
 			);
 			path = "Advent Of Code 2022";
+			sourceTree = "<group>";
+		};
+		50B0E4722938F83B003AF512 /* Days */ = {
+			isa = PBXGroup;
+			children = (
+				50B0E4702938F836003AF512 /* Day1.swift */,
+				50B0E473293A5046003AF512 /* Day2.swift */,
+				50A215A0293BBB9600ED244A /* Day3.swift */,
+			);
+			path = Days;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -78,6 +103,9 @@
 			dependencies = (
 			);
 			name = "Advent Of Code 2022";
+			packageProductDependencies = (
+				50B0E46C2938306F003AF512 /* Parsing */,
+			);
 			productName = "Advent Of Code 2022";
 			productReference = 50B0E45F29382EC2003AF512 /* Advent Of Code 2022 */;
 			productType = "com.apple.product-type.tool";
@@ -106,6 +134,9 @@
 				Base,
 			);
 			mainGroup = 50B0E45629382EC2003AF512;
+			packageReferences = (
+				50B0E46B2938306F003AF512 /* XCRemoteSwiftPackageReference "swift-parsing" */,
+			);
 			productRefGroup = 50B0E46029382EC2003AF512 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -120,7 +151,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50B0E4712938F836003AF512 /* Day1.swift in Sources */,
+				50B0E474293A5046003AF512 /* Day2.swift in Sources */,
+				50B0E46A29382ED2003AF512 /* Day.swift in Sources */,
 				50B0E46329382EC2003AF512 /* main.swift in Sources */,
+				50A215A1293BBB9600ED244A /* Day3.swift in Sources */,
+				50B0E46F29383327003AF512 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +320,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		50B0E46B2938306F003AF512 /* XCRemoteSwiftPackageReference "swift-parsing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-parsing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		50B0E46C2938306F003AF512 /* Parsing */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50B0E46B2938306F003AF512 /* XCRemoteSwiftPackageReference "swift-parsing" */;
+			productName = Parsing;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 50B0E45729382EC2003AF512 /* Project object */;
 }
