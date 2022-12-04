@@ -13,3 +13,13 @@ public struct SimpleError: Error, CustomStringConvertible, CustomDebugStringConv
         description
     }
 }
+
+extension Sequence {
+    public func count(where isContained: (Element) -> Bool) -> Int {
+        var count = 0
+        for element in self where isContained(element) {
+            count += 1
+        }
+        return count
+    }
+}

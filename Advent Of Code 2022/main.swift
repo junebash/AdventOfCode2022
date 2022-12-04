@@ -16,7 +16,8 @@ func printResults<D: Day>(_ day: D) async {
 let days: [any Day] = [
     Day1(),
     Day2(),
-    Day3()
+    Day3(),
+    Day4()
 ]
 
 for day in days {
