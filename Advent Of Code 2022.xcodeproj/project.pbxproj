@@ -62,7 +62,9 @@
 				50B0E46129382EC2003AF512 /* Advent Of Code 2022 */,
 				50B0E46029382EC2003AF512 /* Products */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		50B0E46029382EC2003AF512 /* Products */ = {
 			isa = PBXGroup;
