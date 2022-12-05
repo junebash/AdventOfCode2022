@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		50A215A1293BBB9600ED244A /* Day3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A215A0293BBB9600ED244A /* Day3.swift */; };
 		50A215D7293D236B00ED244A /* Day4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A215D6293D236B00ED244A /* Day4.swift */; };
+		50A215DD293E6E1C00ED244A /* Day5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A215DC293E6E1C00ED244A /* Day5.swift */; };
+		50A215E0293E75CB00ED244A /* CustomDump in Frameworks */ = {isa = PBXBuildFile; productRef = 50A215DF293E75CB00ED244A /* CustomDump */; };
 		50B0E46329382EC2003AF512 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B0E46229382EC2003AF512 /* main.swift */; };
 		50B0E46A29382ED2003AF512 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B0E46929382ED2003AF512 /* Day.swift */; };
 		50B0E46D2938306F003AF512 /* Parsing in Frameworks */ = {isa = PBXBuildFile; productRef = 50B0E46C2938306F003AF512 /* Parsing */; };
@@ -32,6 +34,7 @@
 /* Begin PBXFileReference section */
 		50A215A0293BBB9600ED244A /* Day3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day3.swift; sourceTree = "<group>"; };
 		50A215D6293D236B00ED244A /* Day4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day4.swift; sourceTree = "<group>"; };
+		50A215DC293E6E1C00ED244A /* Day5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day5.swift; sourceTree = "<group>"; };
 		50B0E45F29382EC2003AF512 /* Advent Of Code 2022 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Advent Of Code 2022"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B0E46229382EC2003AF512 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		50B0E46929382ED2003AF512 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
@@ -46,6 +49,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50B0E46D2938306F003AF512 /* Parsing in Frameworks */,
+				50A215E0293E75CB00ED244A /* CustomDump in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +90,7 @@
 				50B0E473293A5046003AF512 /* Day2.swift */,
 				50A215A0293BBB9600ED244A /* Day3.swift */,
 				50A215D6293D236B00ED244A /* Day4.swift */,
+				50A215DC293E6E1C00ED244A /* Day5.swift */,
 			);
 			path = Days;
 			sourceTree = "<group>";
@@ -108,6 +113,7 @@
 			name = "Advent Of Code 2022";
 			packageProductDependencies = (
 				50B0E46C2938306F003AF512 /* Parsing */,
+				50A215DF293E75CB00ED244A /* CustomDump */,
 			);
 			productName = "Advent Of Code 2022";
 			productReference = 50B0E45F29382EC2003AF512 /* Advent Of Code 2022 */;
@@ -139,6 +145,7 @@
 			mainGroup = 50B0E45629382EC2003AF512;
 			packageReferences = (
 				50B0E46B2938306F003AF512 /* XCRemoteSwiftPackageReference "swift-parsing" */,
+				50A215DE293E75CB00ED244A /* XCRemoteSwiftPackageReference "swift-custom-dump" */,
 			);
 			productRefGroup = 50B0E46029382EC2003AF512 /* Products */;
 			projectDirPath = "";
@@ -154,6 +161,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50A215DD293E6E1C00ED244A /* Day5.swift in Sources */,
 				50B0E4712938F836003AF512 /* Day1.swift in Sources */,
 				50B0E474293A5046003AF512 /* Day2.swift in Sources */,
 				50B0E46A29382ED2003AF512 /* Day.swift in Sources */,
@@ -326,6 +334,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		50A215DE293E75CB00ED244A /* XCRemoteSwiftPackageReference "swift-custom-dump" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-custom-dump.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.0;
+			};
+		};
 		50B0E46B2938306F003AF512 /* XCRemoteSwiftPackageReference "swift-parsing" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-parsing.git";
@@ -337,6 +353,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		50A215DF293E75CB00ED244A /* CustomDump */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 50A215DE293E75CB00ED244A /* XCRemoteSwiftPackageReference "swift-custom-dump" */;
+			productName = CustomDump;
+		};
 		50B0E46C2938306F003AF512 /* Parsing */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 50B0E46B2938306F003AF512 /* XCRemoteSwiftPackageReference "swift-parsing" */;

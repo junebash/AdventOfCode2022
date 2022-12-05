@@ -1,156 +1,156 @@
 import Parsing
 
 struct Day2: Day {
-    let dayOfMonth: Int = 2
-
-    enum Play: Character, CaseIterable {
-        case rock = "A", paper = "B", scissors = "C"
-
-        init?(yourPlay: Character) {
-            switch yourPlay {
-            case "X": self = .rock
-            case "Y": self = .paper
-            case "Z": self = .scissors
-            default: return nil
-            }
-        }
-
-        var yourPlay: Character? {
-            switch self {
-            case .rock: return "X"
-            case .paper: return "Y"
-            case .scissors: return "Z"
-            }
-        }
-
-        var score: Int {
-            switch self {
-            case .rock: return 1
-            case .paper: return 2
-            case .scissors: return 3
-            }
-        }
-
-        func beats(_ other: Self) -> Bool {
-            switch (self, other) {
-            case (.rock, .scissors), (.paper, .rock), (.scissors, .paper): return true
-            default: return false
-            }
-        }
-
-        func yourPlay(forOutcome outcome: Outcome) -> Play {
-            switch (self, outcome) {
-            case (.paper, .draw), (.rock, .win), (.scissors, .lose):
-                return .paper
-            case (.rock, .draw), (.scissors, .win), (.paper, .lose):
-                return .rock
-            case (.scissors, .draw), (.paper, .win), (.rock, .lose):
-                return .scissors
-            }
-        }
+  let dayOfMonth: Int = 2
+  
+  enum Play: Character, CaseIterable {
+    case rock = "A", paper = "B", scissors = "C"
+    
+    init?(yourPlay: Character) {
+      switch yourPlay {
+      case "X": self = .rock
+      case "Y": self = .paper
+      case "Z": self = .scissors
+      default: return nil
+      }
     }
-
-    enum Outcome: Character, CaseIterable {
-        case win = "Z", draw = "Y", lose = "X"
-
-        var score: Int {
-            switch self {
-            case .win: return 6
-            case .draw: return 3
-            case .lose: return 0
-            }
-        }
+    
+    var yourPlay: Character? {
+      switch self {
+      case .rock: return "X"
+      case .paper: return "Y"
+      case .scissors: return "Z"
+      }
     }
-
-    struct UTF8ToCharacter: Conversion {
-        struct Failure: Error {}
-
-        func apply(_ input: UTF8.CodeUnit) throws -> Character {
-            Character(UnicodeScalar(input))
-        }
-
-        func unapply(_ output: Character) throws -> UTF8.CodeUnit {
-            guard output.utf8.count == 1 else { throw Failure() }
-            return output.utf8.first!
-        }
+    
+    var score: Int {
+      switch self {
+      case .rock: return 1
+      case .paper: return 2
+      case .scissors: return 3
+      }
     }
-
-    func solution1() async throws -> Any {
-        struct Round: Equatable {
-            var opponent: Play
-            var you: Play
-
-            var outcome: Outcome {
-                if opponent == you {
-                    return .draw
-                } else if you.beats(opponent) {
-                    return .win
-                } else {
-                    return .lose
-                }
-            }
-
-            var totalScore: Int {
-                you.score + outcome.score
-            }
-        }
-
-        let roundParser = Parse(.memberwise(Round.init(opponent:you:))) {
-            First<Substring.UTF8View>()
-                .map(UTF8ToCharacter().map(.representing(Play.self)))
-            Whitespace(.horizontal)
-            First()
-                .map(UTF8ToCharacter().map(.convert(
-                    apply: Play.init(yourPlay:),
-                    unapply: \.yourPlay
-                )))
-        }
-
-        let tournamentParser = Many {
-            roundParser
-        } separator: {
-            Whitespace(.vertical)
-        }
-
-        let tournament = try tournamentParser.parse(input)
-        let score = tournament.lazy.map(\.totalScore).reduce(0, +)
-        return score
+    
+    func beats(_ other: Self) -> Bool {
+      switch (self, other) {
+      case (.rock, .scissors), (.paper, .rock), (.scissors, .paper): return true
+      default: return false
+      }
     }
-
-    func solution2() async throws -> Any {
-        struct Round {
-            var opponent: Play
-            var outcome: Outcome
-
-            var you: Play {
-                opponent.yourPlay(forOutcome: outcome)
-            }
-
-            var totalScore: Int {
-                you.score + outcome.score
-            }
-        }
-
-        let roundParser = Parse(.memberwise(Round.init(opponent:outcome:))) {
-            First<Substring.UTF8View>()
-                .map(UTF8ToCharacter().map(.representing(Play.self)))
-            Whitespace(.horizontal)
-            First()
-                .map(UTF8ToCharacter().map(.representing(Outcome.self)))
-        }
-
-        let tournamentParser = Many {
-            roundParser
-        } separator: {
-            Whitespace(.vertical)
-        }
-
-        let tournament = try tournamentParser.parse(input)
-        let score = tournament.lazy.map(\.totalScore).reduce(0, +)
-        return score
+    
+    func yourPlay(forOutcome outcome: Outcome) -> Play {
+      switch (self, outcome) {
+      case (.paper, .draw), (.rock, .win), (.scissors, .lose):
+        return .paper
+      case (.rock, .draw), (.scissors, .win), (.paper, .lose):
+        return .rock
+      case (.scissors, .draw), (.paper, .win), (.rock, .lose):
+        return .scissors
+      }
     }
-
-    let input: String = """
+  }
+  
+  enum Outcome: Character, CaseIterable {
+    case win = "Z", draw = "Y", lose = "X"
+    
+    var score: Int {
+      switch self {
+      case .win: return 6
+      case .draw: return 3
+      case .lose: return 0
+      }
+    }
+  }
+  
+  struct UTF8ToCharacter: Conversion {
+    struct Failure: Error {}
+    
+    func apply(_ input: UTF8.CodeUnit) throws -> Character {
+      Character(UnicodeScalar(input))
+    }
+    
+    func unapply(_ output: Character) throws -> UTF8.CodeUnit {
+      guard output.utf8.count == 1 else { throw Failure() }
+      return output.utf8.first!
+    }
+  }
+  
+  func solution1() async throws -> Any {
+    struct Round: Equatable {
+      var opponent: Play
+      var you: Play
+      
+      var outcome: Outcome {
+        if opponent == you {
+          return .draw
+        } else if you.beats(opponent) {
+          return .win
+        } else {
+          return .lose
+        }
+      }
+      
+      var totalScore: Int {
+        you.score + outcome.score
+      }
+    }
+    
+    let roundParser = Parse(.memberwise(Round.init(opponent:you:))) {
+      First<Substring.UTF8View>()
+        .map(UTF8ToCharacter().map(.representing(Play.self)))
+      Whitespace(.horizontal)
+      First()
+        .map(UTF8ToCharacter().map(.convert(
+          apply: Play.init(yourPlay:),
+          unapply: \.yourPlay
+        )))
+    }
+    
+    let tournamentParser = Many {
+      roundParser
+    } separator: {
+      Whitespace(.vertical)
+    }
+    
+    let tournament = try tournamentParser.parse(input)
+    let score = tournament.lazy.map(\.totalScore).reduce(0, +)
+    return score
+  }
+  
+  func solution2() async throws -> Any {
+    struct Round {
+      var opponent: Play
+      var outcome: Outcome
+      
+      var you: Play {
+        opponent.yourPlay(forOutcome: outcome)
+      }
+      
+      var totalScore: Int {
+        you.score + outcome.score
+      }
+    }
+    
+    let roundParser = Parse(.memberwise(Round.init(opponent:outcome:))) {
+      First<Substring.UTF8View>()
+        .map(UTF8ToCharacter().map(.representing(Play.self)))
+      Whitespace(.horizontal)
+      First()
+        .map(UTF8ToCharacter().map(.representing(Outcome.self)))
+    }
+    
+    let tournamentParser = Many {
+      roundParser
+    } separator: {
+      Whitespace(.vertical)
+    }
+    
+    let tournament = try tournamentParser.parse(input)
+    let score = tournament.lazy.map(\.totalScore).reduce(0, +)
+    return score
+  }
+  
+  let input: String = """
     C X
     C X
     C X

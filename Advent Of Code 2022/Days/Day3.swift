@@ -1,66 +1,66 @@
 import Parsing
 
 private extension Character {
-    var priority: Int {
-        guard isLetter else { return 0 }
-        if isLowercase {
-            return Int(self.utf8.first! - 96)
-        } else {
-            return Int(self.utf8.first! - 64 + 26)
-        }
+  var priority: Int {
+    guard isLetter else { return 0 }
+    if isLowercase {
+      return Int(self.utf8.first! - 96)
+    } else {
+      return Int(self.utf8.first! - 64 + 26)
     }
+  }
 }
 
 struct Day3: Day {
-    let dayOfMonth: Int = 3
-
-    func solution1() async throws -> Any {
-        let lines = input.split(separator: "\n").lazy.map(Array.init)
-
-        var total = 0
-
-        for line in lines {
-            let halfwayPoint = line.count / 2
-            let compartment1 = line[..<halfwayPoint]
-            let compartment2 = Set(line[halfwayPoint...])
-
-            total += compartment1.first(where: compartment2.contains)?.priority ?? 0
-        }
-
-        return total
+  let dayOfMonth: Int = 3
+  
+  func solution1() async throws -> Any {
+    let lines = input.split(separator: "\n").lazy.map(Array.init)
+    
+    var total = 0
+    
+    for line in lines {
+      let halfwayPoint = line.count / 2
+      let compartment1 = line[..<halfwayPoint]
+      let compartment2 = Set(line[halfwayPoint...])
+      
+      total += compartment1.first(where: compartment2.contains)?.priority ?? 0
     }
-
-    func solution2() async throws -> Any {
-        struct Group {
-            struct NoBadgeFound: Error {}
-
-            var first: Set<Character>
-            var second: Set<Character>
-            var third: Set<Character>
-
-            var badge: Character {
-                get throws {
-                    guard let badge = first.first(where: { second.contains($0) && third.contains($0) })
-                    else { throw NoBadgeFound() }
-                    return badge
-                }
-            }
+    
+    return total
+  }
+  
+  func solution2() async throws -> Any {
+    struct Group {
+      struct NoBadgeFound: Error {}
+      
+      var first: Set<Character>
+      var second: Set<Character>
+      var third: Set<Character>
+      
+      var badge: Character {
+        get throws {
+          guard let badge = first.first(where: { second.contains($0) && third.contains($0) })
+          else { throw NoBadgeFound() }
+          return badge
         }
-        var lines = input.split(separator: "\n").map(Set.init)[...]
-
-        var groups = [Group]()
-        while let first = lines.popFirst(), let second = lines.popFirst(), let third = lines.popFirst() {
-            groups.append(Group(first: first, second: second, third: third))
-        }
-
-        return try groups.lazy
-            .map { try $0.badge }
-            .map(\.priority)
-            .reduce(0, +)
+      }
     }
-
-
-    let input: String = """
+    var lines = input.split(separator: "\n").map(Set.init)[...]
+    
+    var groups = [Group]()
+    while let first = lines.popFirst(), let second = lines.popFirst(), let third = lines.popFirst() {
+      groups.append(Group(first: first, second: second, third: third))
+    }
+    
+    return try groups.lazy
+      .map { try $0.badge }
+      .map(\.priority)
+      .reduce(0, +)
+  }
+  
+  
+  let input: String = """
     PcPlnShmrLmBnmcwBhrmcmbHNGFGpwdFFwGNjNbGqNHH
     tzQfRJfWZZztWzVtCTfRzFZjpFjNZjGLHbdHLDdjpb
     CCQTzRLzvQVVfRzJfMPsnBlglgPmBgPmvSrl

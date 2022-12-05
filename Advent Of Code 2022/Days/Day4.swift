@@ -1,64 +1,64 @@
 import Parsing
 
 private extension ClosedRange where Bound == Int {
-    func contains(_ other: Self) -> Bool {
-        lowerBound <= other.lowerBound && upperBound >= other.upperBound
-    }
-
-    func overlaps(_ other: Self) -> Bool {
-        self.contains(other.lowerBound) || self.contains(other.upperBound)
-    }
+  func contains(_ other: Self) -> Bool {
+    lowerBound <= other.lowerBound && upperBound >= other.upperBound
+  }
+  
+  func overlaps(_ other: Self) -> Bool {
+    self.contains(other.lowerBound) || self.contains(other.upperBound)
+  }
 }
 
 final class Day4: Day {
-    let dayOfMonth: Int = 4
-
-    struct CleaningPair {
-        let first: ClosedRange<Int>
-        let second: ClosedRange<Int>
-
-        var oneContainsOther: Bool {
-            first.contains(second) || second.contains(first)
-        }
-
-        var overlaps: Bool {
-            first.overlaps(second) || second.overlaps(first)
-        }
+  let dayOfMonth: Int = 4
+  
+  struct CleaningPair {
+    let first: ClosedRange<Int>
+    let second: ClosedRange<Int>
+    
+    var oneContainsOther: Bool {
+      first.contains(second) || second.contains(first)
     }
-
-    let sectionsParser = Parse {
-        $0...$1
-    } with: {
-        Digits()
-        "-"
-        Digits()
+    
+    var overlaps: Bool {
+      first.overlaps(second) || second.overlaps(first)
     }
-
-    lazy var pairParser = Parse(CleaningPair.init(first:second:)) {
-        sectionsParser
-        ","
-        sectionsParser
-    }
-
-    lazy var pairsParser = Many {
-        pairParser
-    } separator: {
-        Whitespace(1, .vertical)
-    }
-
-    lazy var parsed: Result<[CleaningPair], Error> = Result {
-        try pairsParser.parse(input)
-    }
-
-    func solution1() async throws -> Any {
-        try parsed.get().count(where: \.oneContainsOther)
-    }
-
-    func solution2() async throws -> Any {
-        try parsed.get().count(where: \.overlaps)
-    }
-
-    let input: String = """
+  }
+  
+  let sectionsParser = Parse {
+    $0...$1
+  } with: {
+    Digits()
+    "-"
+    Digits()
+  }
+  
+  lazy var pairParser = Parse(CleaningPair.init(first:second:)) {
+    sectionsParser
+    ","
+    sectionsParser
+  }
+  
+  lazy var pairsParser = Many {
+    pairParser
+  } separator: {
+    Whitespace(1, .vertical)
+  }
+  
+  lazy var parsed: Result<[CleaningPair], Error> = Result {
+    try pairsParser.parse(input)
+  }
+  
+  func solution1() async throws -> Any {
+    try parsed.get().count(where: \.oneContainsOther)
+  }
+  
+  func solution2() async throws -> Any {
+    try parsed.get().count(where: \.overlaps)
+  }
+  
+  let input: String = """
     18-20,19-21
     9-86,9-87
     7-8,8-18
