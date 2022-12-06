@@ -23,3 +23,12 @@ extension Sequence {
     return count
   }
 }
+
+extension Optional {
+  struct UnwrapError: Error {}
+
+  public func orThrow() throws -> Wrapped {
+    guard let value = self else { throw UnwrapError() }
+    return value
+  }
+}
