@@ -20,7 +20,8 @@ let days: [any Day] = [
   Day4(),
   Day5(),
   Day6(),
-  Day7()
+  Day7(),
+  Day8()
 ]
 
 for day in days {

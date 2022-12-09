@@ -1,9 +1,9 @@
 import Parsing
 
 public struct SimpleError: Error, CustomStringConvertible, CustomDebugStringConvertible {
-  public var description: String = ""
+  public var description: String
   
-  public init(_ description: String) {
+  public init(_ description: String = "") {
     self.description = description
   }
   
@@ -71,5 +71,14 @@ struct PrefixUpToNewLineOrEnd: Parser {
     let output = input.prefix(while: { $0 != "\n" })
     input.removeFirst(output.count)
     return output
+  }
+}
+
+extension Collection {
+  subscript(checked index: Index) -> Element? {
+    get {
+      guard indices.contains(index) else { return nil }
+      return self[index]
+    }
   }
 }
