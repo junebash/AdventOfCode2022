@@ -13,6 +13,8 @@
 		5075FA1E2945284900092D87 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 5075FA1D2945284900092D87 /* Collections */; };
 		5075FA202945284900092D87 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 5075FA1F2945284900092D87 /* DequeModule */; };
 		5075FA222945284900092D87 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 5075FA212945284900092D87 /* OrderedCollections */; };
+		5075FA242946783300092D87 /* Day11.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5075FA232946783300092D87 /* Day11.swift */; };
+		5075FA2729468EFC00092D87 /* BigNumber in Frameworks */ = {isa = PBXBuildFile; productRef = 5075FA2629468EFC00092D87 /* BigNumber */; };
 		50A215A1293BBB9600ED244A /* Day3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A215A0293BBB9600ED244A /* Day3.swift */; };
 		50A215D7293D236B00ED244A /* Day4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A215D6293D236B00ED244A /* Day4.swift */; };
 		50A215DD293E6E1C00ED244A /* Day5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A215DC293E6E1C00ED244A /* Day5.swift */; };
@@ -44,6 +46,7 @@
 		5075FA162942980000092D87 /* Day8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day8.swift; sourceTree = "<group>"; };
 		5075FA182943DED100092D87 /* Day9.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day9.swift; sourceTree = "<group>"; };
 		5075FA1A2945084800092D87 /* Day10.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day10.swift; sourceTree = "<group>"; };
+		5075FA232946783300092D87 /* Day11.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day11.swift; sourceTree = "<group>"; };
 		50A215A0293BBB9600ED244A /* Day3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day3.swift; sourceTree = "<group>"; };
 		50A215D6293D236B00ED244A /* Day4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day4.swift; sourceTree = "<group>"; };
 		50A215DC293E6E1C00ED244A /* Day5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day5.swift; sourceTree = "<group>"; };
@@ -65,6 +68,7 @@
 				50A215E5293FB9D500ED244A /* Algorithms in Frameworks */,
 				50B0E46D2938306F003AF512 /* Parsing in Frameworks */,
 				5075FA222945284900092D87 /* OrderedCollections in Frameworks */,
+				5075FA2729468EFC00092D87 /* BigNumber in Frameworks */,
 				5075FA202945284900092D87 /* DequeModule in Frameworks */,
 				5075FA1E2945284900092D87 /* Collections in Frameworks */,
 				50A215E0293E75CB00ED244A /* CustomDump in Frameworks */,
@@ -116,6 +120,7 @@
 				5075FA162942980000092D87 /* Day8.swift */,
 				5075FA182943DED100092D87 /* Day9.swift */,
 				5075FA1A2945084800092D87 /* Day10.swift */,
+				5075FA232946783300092D87 /* Day11.swift */,
 			);
 			path = Days;
 			sourceTree = "<group>";
@@ -143,6 +148,7 @@
 				5075FA1D2945284900092D87 /* Collections */,
 				5075FA1F2945284900092D87 /* DequeModule */,
 				5075FA212945284900092D87 /* OrderedCollections */,
+				5075FA2629468EFC00092D87 /* BigNumber */,
 			);
 			productName = "Advent Of Code 2022";
 			productReference = 50B0E45F29382EC2003AF512 /* Advent Of Code 2022 */;
@@ -177,6 +183,7 @@
 				50A215DE293E75CB00ED244A /* XCRemoteSwiftPackageReference "swift-custom-dump" */,
 				50A215E3293FB9D500ED244A /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				5075FA1C2945284900092D87 /* XCRemoteSwiftPackageReference "swift-collections" */,
+				5075FA2529468EFC00092D87 /* XCRemoteSwiftPackageReference "Swift-BigInt" */,
 			);
 			productRefGroup = 50B0E46029382EC2003AF512 /* Products */;
 			projectDirPath = "";
@@ -198,6 +205,7 @@
 				50B0E46A29382ED2003AF512 /* Day.swift in Sources */,
 				5075FA192943DED100092D87 /* Day9.swift in Sources */,
 				50B0E46329382EC2003AF512 /* main.swift in Sources */,
+				5075FA242946783300092D87 /* Day11.swift in Sources */,
 				5075FA1B2945084800092D87 /* Day10.swift in Sources */,
 				5075FA172942980000092D87 /* Day8.swift in Sources */,
 				50A215D7293D236B00ED244A /* Day4.swift in Sources */,
@@ -378,6 +386,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		5075FA2529468EFC00092D87 /* XCRemoteSwiftPackageReference "Swift-BigInt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mkrd/Swift-BigInt";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		50A215DE293E75CB00ED244A /* XCRemoteSwiftPackageReference "swift-custom-dump" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-custom-dump.git";
@@ -419,6 +435,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5075FA1C2945284900092D87 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
+		};
+		5075FA2629468EFC00092D87 /* BigNumber */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5075FA2529468EFC00092D87 /* XCRemoteSwiftPackageReference "Swift-BigInt" */;
+			productName = BigNumber;
 		};
 		50A215DF293E75CB00ED244A /* CustomDump */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -82,3 +82,38 @@ extension Collection {
     }
   }
 }
+
+extension MutableCollection {
+  mutating func withItem<Result>(
+    at index: Index,
+    _ operation: (inout Element) -> Result
+  ) -> Result {
+    var item = self[index]
+    let result = operation(&item)
+    self[index] = item
+    return result
+  }
+}
+
+func sortComparator<Root, Value: Comparable>(
+  _ sortPath: @escaping (Root) -> Value,
+  reversed: Bool = false
+) -> (Root, Root) -> Bool {
+  { lhs, rhs in
+    if reversed {
+      return sortPath(lhs) > sortPath(rhs)
+    } else {
+      return sortPath(lhs) < sortPath(rhs)
+    }
+  }
+}
+
+extension FixedWidthInteger {
+  func exponent(_ other: Self) -> Self {
+    var result = self
+    for _ in 1..<other {
+      result *= self
+    }
+    return result
+  }
+}
